@@ -32,3 +32,56 @@ function updateThemeButton(theme) {
 
     themeText.textContent = isDark ? "Light" : "Dark";
 }
+
+
+
+// Close the mobile navbar after navigation without interrupting scrolling
+const navbarCollapse = document.getElementById("navbarNav");
+
+const navbarLinks = document.querySelectorAll("#navbarNav .nav-link");
+
+navbarLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const targetId = link.getAttribute("href");
+
+        if (
+            !targetId ||
+            !targetId.startsWith("#") ||
+            targetId === "#"
+        ) {
+            return;
+        }
+
+        const targetSection = document.querySelector(targetId);
+
+        if (!targetSection) {
+            return;
+        }
+
+        if (
+            navbarCollapse.classList.contains("show") &&
+            window.innerWidth < 992
+        ) {
+            event.preventDefault();
+
+            const bsCollapse = bootstrap.Collapse.getOrCreateInstance(
+                navbarCollapse
+            );
+
+            bsCollapse.hide();
+
+            // Navigate after the navbar finishes closing
+            navbarCollapse.addEventListener(
+                "hidden.bs.collapse",
+                () => {
+                    targetSection.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                },
+                { once: true }
+            );
+        }
+    });
+
+});
