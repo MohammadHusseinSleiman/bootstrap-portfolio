@@ -1,7 +1,10 @@
+// =================================== Theme Toggle ===================================
+
 const themeToggle = document.getElementById("themeToggle");
 const themeIcon = document.getElementById("themeIcon");
 const themeText = document.getElementById("themeText");
 
+// Restore the saved theme
 const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme) {
@@ -34,21 +37,16 @@ function updateThemeButton(theme) {
 }
 
 
+// =================================== Mobile Navigation ===================================
 
-// Close the mobile navbar after navigation without interrupting scrolling
 const navbarCollapse = document.getElementById("navbarNav");
-
 const navbarLinks = document.querySelectorAll("#navbarNav .nav-link");
 
 navbarLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
         const targetId = link.getAttribute("href");
 
-        if (
-            !targetId ||
-            !targetId.startsWith("#") ||
-            targetId === "#"
-        ) {
+        if (!targetId || !targetId.startsWith("#") || targetId === "#") {
             return;
         }
 
@@ -58,6 +56,7 @@ navbarLinks.forEach((link) => {
             return;
         }
 
+        // Close the mobile menu before scrolling to the target section
         if (
             navbarCollapse.classList.contains("show") &&
             window.innerWidth < 992
@@ -70,7 +69,7 @@ navbarLinks.forEach((link) => {
 
             bsCollapse.hide();
 
-            // Navigate after the navbar finishes closing
+            // Scroll after the menu has finished closing
             navbarCollapse.addEventListener(
                 "hidden.bs.collapse",
                 () => {
@@ -83,5 +82,4 @@ navbarLinks.forEach((link) => {
             );
         }
     });
-
 });
