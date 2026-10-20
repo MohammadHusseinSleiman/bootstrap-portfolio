@@ -30,10 +30,29 @@
                 MS<span class="brand-dot">.</span>
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <!-- Mobile controls -->
+            <div class="d-flex align-items-center gap-2 ms-auto d-lg-none">
+                <button
+                    id="themeToggleMobile"
+                    class="btn btn-sm btn-outline-main"
+                    type="button"
+                    aria-label="Toggle dark mode"
+                >
+                    <i class="bi bi-moon"></i>
+                </button>
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
 
             <div class="collapse navbar-collapse" id="navbarNav">
 
@@ -58,9 +77,10 @@
                     </li>
                 </ul>
 
+                <!-- Desktop theme toggle -->
                 <button
                     id="themeToggle"
-                    class="btn btn-sm btn-outline-main ms-lg-3 mt-3 mt-lg-0"
+                    class="btn btn-sm btn-outline-main ms-lg-3 mt-3 mt-lg-0 d-none d-lg-inline-block"
                     type="button"
                     aria-label="Toggle dark mode"
                 >
